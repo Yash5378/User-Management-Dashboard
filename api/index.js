@@ -5,9 +5,9 @@ import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import path from "path";
+import cors from "cors";
 dotenv.config();
 
-const mongoURI = process.env.MONGO_URI;
 mongoose
   .connect("mongodb://localhost:27017/mern-auth")
   .then(() => {
@@ -31,7 +31,9 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-app.listen(3000, () => {
+app.use(cors());
+
+app.listen(3001, () => {
   console.log("Server listening on port 3000");
 });
 
